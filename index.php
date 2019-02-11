@@ -30,6 +30,7 @@ catch (PDOException $e) {
 
 }
 
+// Inserting data
 // Define the query
 $sql = 'INSERT INTO pets (petType, petName, color) VALUES (:petType, :petName, :color)';
 
@@ -59,7 +60,7 @@ $statement->bindParam(':color', $color, PDO::PARAM_STR); */
 //$statement->execute();
 
 // Bind the parameters
-$type = 'tiger';
+/*$type = 'tiger';
 $name = 'India';
 $color = 'orange';
 $statement->bindParam(':petType', $type, PDO::PARAM_STR);
@@ -98,6 +99,37 @@ $statement->bindParam(':color', $color, PDO::PARAM_STR);
 $statement->execute();
 
 $id = $dbh->lastInsertId();
-echo "<p>Pet $id inserted successfully!</p>";
+echo "<p>Pet $id inserted successfully!</p>"; */
 
+// Updating data
+// Define the query
+$sql = "UPDATE pets SET petName = :new WHERE petName = :old";
+
+// Prepare the statement
+$statement = $dbh->prepare($sql);
+
+// Bind the parameters
+$old = 'Joey';
+$new = 'Troy';
+$statement->bindParam(':old', $old, PDO::PARAM_STR);
+$statement->bindParam(':new', $new, PDO::PARAM_STR);
+
+// Execute
+$statement->execute();
+
+// Updating data
+// Define the query
+$sql = "UPDATE pets SET color = :newColor WHERE petName = :petName";
+
+// Prepare the statement
+$statement = $dbh->prepare($sql);
+
+// Bind the parameters
+$newColor = 'brown';
+$name = 'Oscar';
+$statement->bindParam(':newColor', $newColor, PDO::PARAM_STR);
+$statement->bindParam(':petName', $name, PDO::PARAM_STR);
+
+// Execute
+$statement->execute();
 
