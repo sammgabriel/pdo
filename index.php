@@ -4,6 +4,11 @@
  * User: sammgabriel
  * Date: 2019-02-11
  * Time: 14:06
+ *
+ * References:
+ *
+ * https://www.1keydata.com/sql/alter-table-rename-column.html
+ * To alter column names
  */
 
 require '/home/sgabriel/config.php';
@@ -25,3 +30,19 @@ catch (PDOException $e) {
 
 }
 
+// Define the query
+$sql = 'INSERT INTO pets (petType, petName, color) VALUES (:petType, :petName, :color)';
+
+// Prepare the statement
+$statement = $dbh->prepare($sql);
+
+// Bind the parameters
+$type = 'kangaroo';
+$name = 'Joey';
+$color = 'purple';
+$statement->bindParam(':petType', $type, PDO::PARAM_STR);
+$statement->bindParam(':petName', $name, PDO::PARAM_STR);
+$statement->bindParam(':color', $color, PDO::PARAM_STR);
+
+// Execute
+$statement->execute();
