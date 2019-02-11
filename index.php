@@ -135,7 +135,7 @@ $statement->execute();
 
 // Deleting data
 // Define the query
-$sql = "DELETE FROM pets WHERE id = :id";
+/* $sql = "DELETE FROM pets WHERE id = :id";
 
 // Prepare the statement
 $statement = $dbh->prepare($sql);
@@ -145,5 +145,40 @@ $id = '6';
 $statement->bindParam(':id', $id, PDO::PARAM_STR);
 
 // Execute
+$statement->execute(); */
+
+// Select queries
+// Define the query
+$sql = "SELECT * FROM pets WHERE id = :id";
+
+// Prepare the statement
+$statement = $dbh->prepare($sql);
+
+// Bind the parameters
+$id = '3';
+$statement->bindParam(':id', $id, PDO::PARAM_STR);
+
+// Execute
 $statement->execute();
+
+// Process the result
+$row = $statement->fetch(PDO::FETCH_ASSOC);
+echo "<p>" . $row['petName'] . ", " . $row['petType'] . ", " . $row['color'] . "</p>";
+echo "<h2>All pets</h2>";
+
+// Define the query
+$sql = "SELECT * FROM pets";
+
+// Prepare the statement
+$statement = $dbh->prepare($sql);
+
+// Execute
+$statement->execute();
+
+// Process the result
+$result = $statement->fetchAll(PDO::FETCH_ASSOC);
+foreach ($result as $row) {
+
+    echo "<p>" . $row['petName'] . ", " . $row['petType'] . ", " . $row['color'] . "</p>";
+}
 
