@@ -37,9 +37,31 @@ $sql = 'INSERT INTO pets (petType, petName, color) VALUES (:petType, :petName, :
 $statement = $dbh->prepare($sql);
 
 // Bind the parameters
-$type = 'kangaroo';
+/* $type = 'kangaroo';
 $name = 'Joey';
 $color = 'purple';
+$statement->bindParam(':petType', $type, PDO::PARAM_STR);
+$statement->bindParam(':petName', $name, PDO::PARAM_STR);
+$statement->bindParam(':color', $color, PDO::PARAM_STR); */
+
+// Execute
+//$statement->execute();
+
+// Bind the parameters
+/*$type = 'snake';
+$name = 'Slitherin';
+$color = 'green';
+$statement->bindParam(':petType', $type, PDO::PARAM_STR);
+$statement->bindParam(':petName', $name, PDO::PARAM_STR);
+$statement->bindParam(':color', $color, PDO::PARAM_STR); */
+
+// Execute
+//$statement->execute();
+
+// Bind the parameters
+$type = 'tiger';
+$name = 'India';
+$color = 'orange';
 $statement->bindParam(':petType', $type, PDO::PARAM_STR);
 $statement->bindParam(':petName', $name, PDO::PARAM_STR);
 $statement->bindParam(':color', $color, PDO::PARAM_STR);
@@ -47,9 +69,26 @@ $statement->bindParam(':color', $color, PDO::PARAM_STR);
 // Execute
 $statement->execute();
 
+$id = $dbh->lastInsertId();
+echo "<p>Pet $id inserted successfully!</p>";
+
 // Bind the parameters
-$type = 'snake';
-$name = 'Slitherin';
+$type = 'dog';
+$name = 'Sparky';
+$color = 'black';
+$statement->bindParam(':petType', $type, PDO::PARAM_STR);
+$statement->bindParam(':petName', $name, PDO::PARAM_STR);
+$statement->bindParam(':color', $color, PDO::PARAM_STR);
+
+// Execute
+$statement->execute();
+
+$id = $dbh->lastInsertId();
+echo "<p>Pet $id inserted successfully!</p>";
+
+// Bind the parameters
+$type = 'chameleon';
+$name = 'Pascal';
 $color = 'green';
 $statement->bindParam(':petType', $type, PDO::PARAM_STR);
 $statement->bindParam(':petName', $name, PDO::PARAM_STR);
@@ -60,3 +99,5 @@ $statement->execute();
 
 $id = $dbh->lastInsertId();
 echo "<p>Pet $id inserted successfully!</p>";
+
+
