@@ -6,13 +6,15 @@
  * Time: 14:06
  */
 
+require '/home/sgabriel/config.php';
+
 // Connect to DB
 
 try {
 
     // Instantiate a database object
-    $dbh = new PDO("mysql:dbname=sgabriel_grc",
-        "sgabriel_grcuser", "7j34ifMH!8+nHA");
+    $dbh = new PDO(DB_DSN,
+        DB_USERNAME, DB_PASSWORD);
 
     echo 'Connected to database!';
 }
@@ -22,3 +24,4 @@ catch (PDOException $e) {
     echo $e->getMessage();
 
 }
+
