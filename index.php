@@ -221,7 +221,8 @@ $statement->bindParam(':petId', $petId, PDO::PARAM_INT);
 //$statement->execute();
 
 // Define the query
-$sql = "SELECT * FROM petOwners";
+$sql = "SELECT petOwners.id, petOwners.first_name, petOwners.last_name, pets.petName, 
+          pets.petType, pets.color FROM pets, petOwners WHERE pets.id = petOwners.petId;";
 
 // Prepare the statement
 $statement = $dbh->prepare($sql);
@@ -233,11 +234,14 @@ $statement->execute();
 $result = $statement->fetchAll(PDO::FETCH_ASSOC);
 
 // Create HTML table to display order summary
-echo "<table><tr><th>Customer ID</th><th>Customer First Name</th><th>Customer Last Name</th><th>Pet ID</th></tr>";
+echo "<table><tr><th>Customer ID</th><th>Customer First Name</th><th>Customer Last Name</th>
+        <th>Pet Name</th><th>Pet Type</th><th>Pet Color</th></tr>";
 
 foreach ($result as $row) {
 
-    echo "<tr><td>" . $row['id'] . "</td><td>" . $row['first_name'] . "</td><td>" . $row['last_name'] . "</td><td>" . $row['petId'] . "</td></tr>";
+    echo "<tr><td>" . $row['id'] . "</td><td>" . $row['first_name'] . "</td><td>" .
+        $row['last_name'] . "</td><td>" . $row['petName'] . "</td><td>" .  $row['petType'] .
+        "</td><td>" . $row['color'] . "</td></tr>";
 }
 
 echo "</table>";
