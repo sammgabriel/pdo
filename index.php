@@ -38,29 +38,29 @@ $sql = 'INSERT INTO pets (petType, petName, color) VALUES (:petType, :petName, :
 $statement = $dbh->prepare($sql);
 
 // Bind the parameters
-/* $type = 'kangaroo';
+/*$type = 'kangaroo';
 $name = 'Joey';
 $color = 'purple';
 $statement->bindParam(':petType', $type, PDO::PARAM_STR);
 $statement->bindParam(':petName', $name, PDO::PARAM_STR);
-$statement->bindParam(':color', $color, PDO::PARAM_STR); */
+$statement->bindParam(':color', $color, PDO::PARAM_STR);
 
 // Execute
-//$statement->execute();
+$statement->execute();
 
 // Bind the parameters
-/*$type = 'snake';
+$type = 'snake';
 $name = 'Slitherin';
 $color = 'green';
 $statement->bindParam(':petType', $type, PDO::PARAM_STR);
 $statement->bindParam(':petName', $name, PDO::PARAM_STR);
-$statement->bindParam(':color', $color, PDO::PARAM_STR); */
+$statement->bindParam(':color', $color, PDO::PARAM_STR);
 
 // Execute
-//$statement->execute();
+//$statement->execute(); */
 
 // Bind the parameters
-/*$type = 'tiger';
+$type = 'tiger';
 $name = 'India';
 $color = 'orange';
 $statement->bindParam(':petType', $type, PDO::PARAM_STR);
@@ -99,7 +99,7 @@ $statement->bindParam(':color', $color, PDO::PARAM_STR);
 $statement->execute();
 
 $id = $dbh->lastInsertId();
-echo "<p>Pet $id inserted successfully!</p>"; */
+echo "<p>Pet $id inserted successfully!</p>";
 
 // Updating data
 // Define the query
@@ -181,4 +181,29 @@ foreach ($result as $row) {
 
     echo "<p>" . $row['petName'] . ", " . $row['petType'] . ", " . $row['color'] . "</p>";
 }
+
+// Add to the pet owners table
+// Define the query
+$sql = "INSERT INTO petOwners (first_name, last_name, petId) VALUES (:firstName, :lastName, :petId)";
+
+// Prepare the statement
+$statement = $dbh->prepare($sql);
+
+// Bind the parameters
+$firstName = 'Joe';
+$lastName = 'Shmo';
+$petId = 1;
+$firstName = 'X';
+$lastName = 'Wu';
+$petId = 2;
+$firstName = 'Sam';
+$lastName = 'Iam';
+$petId = 3;
+$statement->bindParam(':firstName', $firstName, PDO::PARAM_STR);
+$statement->bindParam(':lastName', $lastName, PDO::PARAM_STR);
+$statement->bindParam(':petId', $petId, PDO::PARAM_INT);
+
+// Execute
+$statement->execute();
+
 
