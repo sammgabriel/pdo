@@ -60,7 +60,7 @@ $statement->bindParam(':color', $color, PDO::PARAM_STR);
 //$statement->execute(); */
 
 // Bind the parameters
-$type = 'tiger';
+/*$type = 'tiger';
 $name = 'India';
 $color = 'orange';
 $statement->bindParam(':petType', $type, PDO::PARAM_STR);
@@ -135,7 +135,7 @@ $statement->execute();
 
 // Deleting data
 // Define the query
-/* $sql = "DELETE FROM pets WHERE id = :id";
+$sql = "DELETE FROM pets WHERE id = :id";
 
 // Prepare the statement
 $statement = $dbh->prepare($sql);
@@ -145,7 +145,7 @@ $id = '6';
 $statement->bindParam(':id', $id, PDO::PARAM_STR);
 
 // Execute
-$statement->execute(); */
+$statement->execute();
 
 // Select queries
 // Define the query
@@ -180,7 +180,7 @@ $result = $statement->fetchAll(PDO::FETCH_ASSOC);
 foreach ($result as $row) {
 
     echo "<p>" . $row['petName'] . ", " . $row['petType'] . ", " . $row['color'] . "</p>";
-}
+} */
 
 // Add to the pet owners table
 // Define the query
@@ -193,9 +193,13 @@ $statement = $dbh->prepare($sql);
 $firstName = 'Joe';
 $lastName = 'Shmo';
 $petId = 1;
-$firstName = 'X';
-$lastName = 'Wu';
-$petId = 2;
+$statement->bindParam(':firstName', $firstName, PDO::PARAM_STR);
+$statement->bindParam(':lastName', $lastName, PDO::PARAM_STR);
+$statement->bindParam(':petId', $petId, PDO::PARAM_INT);
+
+// Execute
+//$statement->execute();
+
 $firstName = 'Sam';
 $lastName = 'Iam';
 $petId = 3;
@@ -204,6 +208,40 @@ $statement->bindParam(':lastName', $lastName, PDO::PARAM_STR);
 $statement->bindParam(':petId', $petId, PDO::PARAM_INT);
 
 // Execute
+//$statement->execute();
+
+$firstName = 'X';
+$lastName = 'Wu';
+$petId = 2;
+$statement->bindParam(':firstName', $firstName, PDO::PARAM_STR);
+$statement->bindParam(':lastName', $lastName, PDO::PARAM_STR);
+$statement->bindParam(':petId', $petId, PDO::PARAM_INT);
+
+// Execute
+//$statement->execute();
+
+// Define the query
+$sql = "SELECT * FROM petOwners";
+
+// Prepare the statement
+$statement = $dbh->prepare($sql);
+
+// Execute
 $statement->execute();
+
+// Process the result
+$result = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+// Create HTML table to display order summary
+echo "<table><tr><th>Customer ID</th><th>Customer First Name</th><th>Customer Last Name</th><th>Pet ID</th></tr>";
+
+foreach ($result as $row) {
+
+    echo "<tr><td>" . $row['id'] . "</td><td>" . $row['first_name'] . "</td><td>" . $row['last_name'] . "</td><td>" . $row['petId'] . "</td></tr>";
+}
+
+echo "</table>";
+
+
 
 
