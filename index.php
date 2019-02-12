@@ -38,7 +38,7 @@ $sql = 'INSERT INTO pets (petType, petName, color) VALUES (:petType, :petName, :
 $statement = $dbh->prepare($sql);
 
 // Bind the parameters
-/*$type = 'kangaroo';
+$type = 'kangaroo';
 $name = 'Joey';
 $color = 'purple';
 $statement->bindParam(':petType', $type, PDO::PARAM_STR);
@@ -57,10 +57,10 @@ $statement->bindParam(':petName', $name, PDO::PARAM_STR);
 $statement->bindParam(':color', $color, PDO::PARAM_STR);
 
 // Execute
-//$statement->execute(); */
+//$statement->execute();
 
 // Bind the parameters
-/*$type = 'tiger';
+$type = 'tiger';
 $name = 'India';
 $color = 'orange';
 $statement->bindParam(':petType', $type, PDO::PARAM_STR);
@@ -131,7 +131,7 @@ $statement->bindParam(':newColor', $newColor, PDO::PARAM_STR);
 $statement->bindParam(':petName', $name, PDO::PARAM_STR);
 
 // Execute
-$statement->execute();
+//$statement->execute();
 
 // Deleting data
 // Define the query
@@ -145,7 +145,7 @@ $id = '6';
 $statement->bindParam(':id', $id, PDO::PARAM_STR);
 
 // Execute
-$statement->execute();
+//$statement->execute();
 
 // Select queries
 // Define the query
@@ -164,23 +164,6 @@ $statement->execute();
 // Process the result
 $row = $statement->fetch(PDO::FETCH_ASSOC);
 echo "<p>" . $row['petName'] . ", " . $row['petType'] . ", " . $row['color'] . "</p>";
-echo "<h2>All pets</h2>";
-
-// Define the query
-$sql = "SELECT * FROM pets";
-
-// Prepare the statement
-$statement = $dbh->prepare($sql);
-
-// Execute
-$statement->execute();
-
-// Process the result
-$result = $statement->fetchAll(PDO::FETCH_ASSOC);
-foreach ($result as $row) {
-
-    echo "<p>" . $row['petName'] . ", " . $row['petType'] . ", " . $row['color'] . "</p>";
-} */
 
 // Add to the pet owners table
 // Define the query
@@ -234,7 +217,7 @@ $statement->execute();
 $result = $statement->fetchAll(PDO::FETCH_ASSOC);
 
 // Create HTML table to display order summary
-echo "<table><tr><th>Customer ID</th><th>Customer First Name</th><th>Customer Last Name</th>
+echo "<table border='1px solid'><tr><th>Customer ID</th><th>Customer First Name</th><th>Customer Last Name</th>
         <th>Pet Name</th><th>Pet Type</th><th>Pet Color</th></tr>";
 
 foreach ($result as $row) {
@@ -246,6 +229,23 @@ foreach ($result as $row) {
 
 echo "</table>";
 
+// Display all the pets in the pets table
+// Define the query
+$sql = "SELECT * FROM pets";
+
+// Prepare the statement
+$statement = $dbh->prepare($sql);
+
+// Execute
+$statement->execute();
+
+// Process the result
+$result = $statement->fetchAll(PDO::FETCH_ASSOC);
+echo "<h2>All pets</h2>";
+foreach ($result as $row) {
+
+    echo "<p>" . $row['petName'] . ", " . $row['petType'] . ", " . $row['color'] . "</p>";
+}
 
 
 
